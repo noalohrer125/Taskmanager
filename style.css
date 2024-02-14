@@ -1,11 +1,49 @@
 * {
     text-align: center;
+    background-color: rgb(141, 141, 141);
 }
 
 table {
     padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 20px;
+}
+
+th {
+    padding: 10px;
+    font-size: 30px;
 }
 
 td {
-    padding: 20px;
+    padding: 0px;
+    border: solid black 1px;
+}
+
+button {
+    font-size: 15px;
+    color: black;
+    font-size: auto; 
+    width: 40%;
+}
+
+button:hover {
+    background-color: rgb(0, 0, 0);
+    color: white;
+    cursor: pointer;
+}
+
+button:active {
+    background-color: rgb(77, 0, 0);
+    color: white;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+#add_task {
+    width: auto;
+    font-size: 20px;
+    border-radius: 10px;
 }

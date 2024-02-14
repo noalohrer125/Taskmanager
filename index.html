@@ -7,29 +7,58 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <table>
-        <th>
-            <td>
-                ToDoo's
-            </td>
-            <td>
-                In Progress
-            </td>
-            <td>
-                Done
-            </td>
-        </th>
-        <tr>
-            <td>
-                <button>Add Task</button>
-            </td>
-            <td>
-                <p></p>
-            </td>
-            <td>
-                <p></p>
-            </td>
-        </tr>
-    </table>
+    <div class="todo_table">
+        <table>
+            <tr>
+                <th>
+                    ToDoo's
+                </th>
+                <th>
+                    In Progress
+                </th>
+                <th>
+                    Done
+                </th>
+            </tr>
+            <tr>
+                <td>
+
+                </td>
+                <td>
+
+                </td>
+                <td>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+    <br>
+    <button onclick="add_task()" id="add_task">Add Task</button>
+    <div id="popupform" style="display: none;">
+        <div class="single_Task" style="width: 300px; border: solid black 1px; padding: 20px;">
+            <h1 style="text-decoration: underline; text-align: center;">
+              Taskname
+            </h1>
+            <h2>
+              Description:
+            </h2>
+            <div style="padding-left: 20px;">
+                <ul>
+                    <li>Here is the first element of the Description.</li>
+                </ul>
+            </div>
+            <br>
+            <h3 class="inline-block">
+              Deadline:
+            </h3>
+            <p class="inline-block">Here comes the Deadline.</p>
+            <br>
+            <div style="text-align: center;">
+              <button onclick="start(id)">Start</button>
+              <button onclick="edit(id)" >Edit</button>
+            </div>
+          </div>
+    </div>
 </body>
 </html>
