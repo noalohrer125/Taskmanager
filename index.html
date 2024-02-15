@@ -5,60 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taskmanager</title>
     <link rel="stylesheet" href="style.css">
+    <script src="main.js" defer></script>
 </head>
 <body>
+  <div id="all">
     <div class="todo_table">
-        <table>
-            <tr>
-                <th>
-                    ToDoo's
-                </th>
-                <th>
-                    In Progress
-                </th>
-                <th>
-                    Done
-                </th>
-            </tr>
-            <tr>
-                <td>
-
-                </td>
-                <td>
-
-                </td>
-                <td>
-
-                </td>
-            </tr>
-        </table>
+      <table id="todo_table">
+          <tr>
+              <th>
+                  ToDoo's
+              </th>
+              <th>
+                  In Progress
+              </th>
+              <th>
+                  Done
+              </th>
+          </tr>
+      </table>
     </div>
     <br>
     <button onclick="add_task()" id="add_task">Add Task</button>
-    <div id="popupform" style="display: none;">
-        <div class="single_Task" style="width: 300px; border: solid black 1px; padding: 20px;">
-            <h1 style="text-decoration: underline; text-align: center;">
-              Taskname
-            </h1>
-            <h2>
-              Description:
-            </h2>
-            <div style="padding-left: 20px;">
-                <ul>
-                    <li>Here is the first element of the Description.</li>
-                </ul>
-            </div>
-            <br>
-            <h3 class="inline-block">
-              Deadline:
-            </h3>
-            <p class="inline-block">Here comes the Deadline.</p>
-            <br>
-            <div style="text-align: center;">
-              <button onclick="start(id)">Start</button>
-              <button onclick="edit(id)" >Edit</button>
-            </div>
+
+    <div id="popupform">
+      <div class="single_Task" style="width: 300px; border: solid black 1px; padding: 20px;">
+          <h1 style="text-decoration: underline; text-align: center;">
+            Taskname:
+          </h1>
+          <input type="text" id="input_taskname">
+          <h2>
+            Description:
+          </h2>
+          <div>
+              <textarea type="text" id="input_description"></textarea>
           </div>
+          <br>
+          <h3 class="inline-block">
+            Deadline:
+          </h3>
+          <input type="date" id="input_deadline" class="inline-block">
+          <br>
+          <div style="text-align: center;">
+            <button onclick="submit(id)">Submit</button>
+          </div>
+        </div>
     </div>
+  </div>
 </body>
 </html>

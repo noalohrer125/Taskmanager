@@ -16,7 +16,7 @@ th {
 }
 
 td {
-    padding: 0px;
+    padding: 10px 40px 10px 40px;
     border: solid black 1px;
 }
 
@@ -46,4 +46,16 @@ button:active {
     width: auto;
     font-size: 20px;
     border-radius: 10px;
+}
+
+#popupform {
+    display: none;
+    position: fixed; /* Position relativ zum Viewport */
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%); /* Zentriert das Formular */
+    z-index: 1000; /* Stellt sicher, dass das Formular über anderen Elementen liegt */
+    background-color: rgb(0, 0, 0); /* Hintergrundfarbe des Formulars */
+    padding: 20px; /* Abstand im Inneren des Formulars */
+    box-shadow: 0 4px 8px rgba(238, 255, 0, 0.76); /* Schatten für bessere Sichtbarkeit */
 }
