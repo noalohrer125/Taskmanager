@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taskmanager</title>
     <link rel="stylesheet" href="style.css">
-    <script src="main.js" defer></script>
+    <script src="test.js" defer></script>
 </head>
 <body>
   <div id="all">
-    <div class="todo_table">
       <table id="todo_table">
           <tr>
               <th>
@@ -23,7 +22,6 @@
               </th>
           </tr>
       </table>
-    </div>
     <br>
     <button onclick="add_task()" id="add_task">Add Task</button>
 
@@ -47,6 +45,7 @@
           <br>
           <div style="text-align: center;">
             <button onclick="submit(id)">Submit</button>
+            <button onclick="closeform(this)">Cancel</button>
           </div>
         </div>
     </div>
