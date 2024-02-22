@@ -118,6 +118,20 @@ function start(id) {
     location.reload(true)
 }
 
+function todo(id) {
+    let parentCell = id.closest('td')
+    let parentCell_id = parentCell.id.split('_')[1]
+
+    Tasks = JSON.parse(localStorage.getItem('Tasks')) || []
+    let task = Tasks[parentCell_id];
+
+    task.Status = "ToDoo's"
+
+    localStorage.setItem('Tasks', JSON.stringify(Tasks))
+
+    location.reload(true)
+}
+
 function done(id) {
     let parentCell = id.closest('td')
     let parentCell_id = parentCell.id.split('_')[1]
@@ -170,106 +184,185 @@ function render_tasks() {
     let stored_tasks = JSON.parse(localStorage.getItem('Tasks')) || []
     let table = document.getElementById('todo_table')
 
+    let todo = countTasksByStatus()
+    let max = Math.max(todo["ToDoo's"], todo['inProgress'], todo['Done'])
+
+    let cells = [];
+
+    for (let i = 0; i < max; i++) {
+        let row = table.insertRow();
+        cells[i] = [];
+        cells[i][0] = row.insertCell(0);
+        cells[i][1] = row.insertCell(1);
+        cells[i][2] = row.insertCell(2);
+    }
+
+    let counterrow_todo = 0
+    let counterrow_inporgress = 0
+    let counterrow_done = 0
+
     for (i in stored_tasks) {
+        
         let Name = stored_tasks[i].Taskname
         let Description = stored_tasks[i].Description.split('\n')
         let Deadline = stored_tasks[i].Deadline
         let Status = stored_tasks[i].Status
 
-        let row = table.insertRow(-1)
-        let zelle1 = row.insertCell(0)
-        let zelle2 = row.insertCell(1)
-        let zelle3 = row.insertCell(2)
-
-        if (Status === "ToDoo's") {
-            zelle1.id = 'Zelle_' + i
         
-            zelle1.innerHTML = 
-            `
-            <div style="padding: 10px 40px 10px 40px; border: solid black 1px;">
-                <h1 style="text-decoration: underline; text-align: center;">
-                    ${Name}
-                </h1>
-                <h2>
-                    Description:
-                </h2>
-                <ul>
-                ${Description.map(x => `<li style="border-bottom: solid gray 1px;">${x}</li>`).join('')}
-                </ul>
-                <br>
-                <h3 class="inline-block">
-                    Deadline:
-                </h3>
-                <p class="inline-block">
-                    ${Deadline}
-                </p>
-                <br>
-                <button onclick="start(this)">Start</button>
-                <button onclick="edit(this)" >Edit</button>
-                <button onclick="remove(this)" >Remove</button>
-            </div>
-            <br>
-            `
-        }
 
-        else if (Status === 'inProgress') {
-            zelle2.id = 'Zelle_' + i
-        
-            zelle2.innerHTML = 
-            `
-            <div style="padding: 10px 40px 10px 40px; border: solid black 1px;">
-                <h1 style="text-decoration: underline; text-align: center;">
-                    ${Name}
-                </h1>
-                <h2>
-                    Description:
-                </h2>
-                <ul>
-                ${Description.map(x => `<li style="border-bottom: solid gray 1px;">${x}</li>`).join('')}
-                </ul>
+        switch (Status) {
+            case "ToDoo's":
+                let zelle1 = cells[counterrow_todo][0]
+                zelle1.id  = 'Zelle_' + i
+                counterrow_todo = counterrow_todo + 1
+            
+                zelle1.innerHTML = 
+                `
+                <div style="padding: 10px 40px 10px 40px; border: solid black 10px; width: 180px;">
+                    <h1 style="text-decoration: underline; text-align: center;">
+                        ${Name}
+                    </h1>
+                    <h2>
+                        Description:
+                    </h2>
+                    <ul>
+                    ${Description.map(x => `<li style="border-bottom: solid gray 1px;">${x}</li>`).join('')}
+                    </ul>
+                    <br>
+                    <h3 class="inline-block">
+                        Deadline:
+                    </h3>
+                    <p class="inline-block">
+                        ${Deadline}
+                    </p>
+                    <br>
+                    <button onclick="start(this)">Start</button>
+                    <button onclick="edit(this)">Edit</button>
+                    <button onclick="remove(this)">Remove</button>
+                </div>
                 <br>
-                <h3 class="inline-block">
-                    Deadline:
-                </h3>
-                <p class="inline-block">
-                    ${Deadline}
-                </p>
-                <br>
-                <button onclick="done(this)">Done</button>
-                <button onclick="edit(this)" >Edit</button>
-                <button onclick="remove(this)" >Remove</button>
-            </div>
-            <br>
-            `
-        }
+                `
+                
+                break;
 
-        else if (Status === 'Done') {
-            zelle3.id = 'Zelle_' + i
-        
-            zelle3.innerHTML = 
-            `
-            <div style="padding: 10px 40px 10px 40px; border: solid black 1px;">
-                <h1 style="text-decoration: underline; text-align: center;">
-                    ${Name}
-                </h1>
-                <h2>
-                    Description:
-                </h2>
-                <ul>
-                ${Description.map(x => `<li style="border-bottom: solid gray 1px;">${x}</li>`).join('')}
-                </ul>
+            case 'inProgress':
+                let zelle2 = cells[counterrow_inporgress][1]
+                zelle2.id  = 'Zelle_' + i
+                counterrow_inporgress = counterrow_inporgress + 1
+            
+                zelle2.innerHTML = 
+                `
+                <div style="padding: 10px 40px 10px 40px; border: solid black 10px; width: 180px;">
+                    <h1 style="text-decoration: underline; text-align: center;">
+                        ${Name}
+                    </h1>
+                    <h2>
+                        Description:
+                    </h2>
+                    <ul>
+                    ${Description.map(x => `<li style="border-bottom: solid gray 1px;">${x}</li>`).join('')}
+                    </ul>
+                    <br>
+                    <h3 class="inline-block">
+                        Deadline:
+                    </h3>
+                    <p class="inline-block">
+                        ${Deadline}
+                    </p>
+                    <br>
+                    <button onclick="done(this)">Done</button>
+                    <button onclick="edit(this)">Edit</button>
+                    <button onclick="remove(this)">Remove</button>
+                </div>
                 <br>
-                <h3 class="inline-block">
-                    Deadline:
-                </h3>
-                <p class="inline-block">
-                    ${Deadline}
-                </p>
+                `
+
+                break;
+
+            case 'Done':
+                let zelle3 = cells[counterrow_done][2]
+                zelle3.id  = 'Zelle_' + i
+                counterrow_done = counterrow_done + 1
+            
+                zelle3.innerHTML = 
+                `
+                <div style="padding: 10px 40px 10px 40px; border: solid black 10px; width: 180px;">
+                    <h1 style="text-decoration: underline; text-align: center;">
+                        ${Name}
+                    </h1>
+                    <h2>
+                        Description:
+                    </h2>
+                    <ul>
+                        ${Description.map(x => `<li style="border-bottom: solid gray 1px;">${x}</li>`).join('')}
+                    </ul>
+                    <br>
+                    <h3 class="inline-block">
+                        Deadline:
+                    </h3>
+                    <p class="inline-block">
+                        ${Deadline}
+                    </p>
+                    <br>
+                    <button onclick="todo(this)">Start</button>
+                    <button onclick="edit(this)">Edit</button>
+                    <button onclick="remove(this)">Remove</button>
+                </div>
                 <br>
-                <button onclick="remove(this)" >Remove</button>
-            </div>
-            <br>
-            `
+                `
+
+                break;
         }
-    };
+    }
+}
+
+function sortTasksa() {
+    // Lade die gespeicherten Tasks
+    let storedTasks = JSON.parse(localStorage.getItem('Tasks')) || [];
+    
+    // Sortiere die Tasks alphabetisch nach dem Tasknamen
+    storedTasks.sort((a, b) => {
+        if (a.Taskname.toLowerCase() < b.Taskname.toLowerCase()) return -1;
+        if (a.Taskname.toLowerCase() > b.Taskname.toLowerCase()) return 1;
+        return 0;
+    });
+    
+    // Speichere die sortierten Tasks zurück im LocalStorage
+    localStorage.setItem('Tasks', JSON.stringify(storedTasks));
+
+    location.reload()
+}
+
+function sortTasksb() {
+    // Lade die gespeicherten Tasks
+    let storedTasks = JSON.parse(localStorage.getItem('Tasks')) || [];
+    
+    // Sortiere die Tasks alphabetisch nach dem Tasknamen
+    storedTasks.sort((a, b) => {
+        if (a.Taskname.toLowerCase() < b.Taskname.toLowerCase()) return 1;
+        if (a.Taskname.toLowerCase() > b.Taskname.toLowerCase()) return -1;
+        return 0;
+    });
+    
+    // Speichere die sortierten Tasks zurück im LocalStorage
+    localStorage.setItem('Tasks', JSON.stringify(storedTasks));
+
+    location.reload()
+}
+
+function sortTasksByDeadline() {
+    let storedTasks = JSON.parse(localStorage.getItem('Tasks')) || [];
+    
+    // Sortiere die Tasks nach der Deadline
+    storedTasks.sort((a, b) => {
+        // Umwandlung der Deadlines in Date-Objekte für den Vergleich
+        let deadlineA = new Date(a.Deadline);
+        let deadlineB = new Date(b.Deadline);
+        
+        return deadlineA - deadlineB;
+    });
+    
+    localStorage.setItem('Tasks', JSON.stringify(storedTasks));
+    
+    location.reload();
 }

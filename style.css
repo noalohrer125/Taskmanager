@@ -54,3 +54,7 @@ button:active {
     padding: 20px; /* Abstand im Inneren des Formulars */
     box-shadow: 0 4px 8px rgba(238, 255, 0, 0.76); /* Schatten für bessere Sichtbarkeit */
 }
+
+.sortbuttons_inlineblock {
+    display: inline;
+}

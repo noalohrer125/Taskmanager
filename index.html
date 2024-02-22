@@ -5,23 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taskmanager</title>
     <link rel="stylesheet" href="style.css">
-    <script src="test.js" defer></script>
+    <script src="main.js" defer></script>
 </head>
 <body>
   <div id="all">
-      <table id="todo_table">
-          <tr>
-              <th>
-                  ToDoo's
-              </th>
-              <th>
-                  In Progress
-              </th>
-              <th>
-                  Done
-              </th>
-          </tr>
-      </table>
+    <table id="todo_table">
+      <button onclick="sortTasksa()" style="width: auto;">Sort tasks alphabetically (asccending)</button>
+      <br>
+      <button onclick="sortTasksb()" style="width: auto;">Sort tasks alphabetically (descending)</button>
+      <br>
+      <button onclick="sortTasksByDeadline()" style="width: auto;">Sort by deadline</button>
+      <tr>
+          <th>
+              ToDoo's
+          </th>
+          <th>
+              In Progress
+          </th>
+          <th>
+              Done
+          </th>
+      </tr>
+    </table>
     <br>
     <button onclick="add_task()" id="add_task">Add Task</button>
 

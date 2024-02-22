@@ -184,10 +184,6 @@ function render_tasks() {
     let stored_tasks = JSON.parse(localStorage.getItem('Tasks')) || []
     let table = document.getElementById('todo_table')
 
-    
-
-
-
     let todo = countTasksByStatus()
     let max = Math.max(todo["ToDoo's"], todo['inProgress'], todo['Done'])
 
@@ -318,4 +314,55 @@ function render_tasks() {
                 break;
         }
     }
+}
+
+function sortTasksa() {
+    // Lade die gespeicherten Tasks
+    let storedTasks = JSON.parse(localStorage.getItem('Tasks')) || [];
+    
+    // Sortiere die Tasks alphabetisch nach dem Tasknamen
+    storedTasks.sort((a, b) => {
+        if (a.Taskname.toLowerCase() < b.Taskname.toLowerCase()) return -1;
+        if (a.Taskname.toLowerCase() > b.Taskname.toLowerCase()) return 1;
+        return 0;
+    });
+    
+    // Speichere die sortierten Tasks zurück im LocalStorage
+    localStorage.setItem('Tasks', JSON.stringify(storedTasks));
+
+    location.reload()
+}
+
+function sortTasksb() {
+    // Lade die gespeicherten Tasks
+    let storedTasks = JSON.parse(localStorage.getItem('Tasks')) || [];
+    
+    // Sortiere die Tasks alphabetisch nach dem Tasknamen
+    storedTasks.sort((a, b) => {
+        if (a.Taskname.toLowerCase() < b.Taskname.toLowerCase()) return 1;
+        if (a.Taskname.toLowerCase() > b.Taskname.toLowerCase()) return -1;
+        return 0;
+    });
+    
+    // Speichere die sortierten Tasks zurück im LocalStorage
+    localStorage.setItem('Tasks', JSON.stringify(storedTasks));
+
+    location.reload()
+}
+
+function sortTasksByDeadline() {
+    let storedTasks = JSON.parse(localStorage.getItem('Tasks')) || [];
+    
+    // Sortiere die Tasks nach der Deadline
+    storedTasks.sort((a, b) => {
+        // Umwandlung der Deadlines in Date-Objekte für den Vergleich
+        let deadlineA = new Date(a.Deadline);
+        let deadlineB = new Date(b.Deadline);
+        
+        return deadlineA - deadlineB;
+    });
+    
+    localStorage.setItem('Tasks', JSON.stringify(storedTasks));
+    
+    location.reload();
 }
