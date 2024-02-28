@@ -393,5 +393,29 @@ function menü() {
 }
 
 function toggleInvertColors() {
-    document.body.classList.toggle('invert-colors');
+    const currentTheme = localStorage.getItem('theme');
+
+    if (currentTheme === 'invert') {
+        localStorage.setItem('theme', 'normal');
+    } 
+    
+    else {
+        localStorage.setItem('theme', 'invert');
+    }
+
+    checkTheme(); // Rufen Sie checkTheme auf, um die Änderungen sofort anzuwenden
 }
+
+function checkTheme() {
+    const currentTheme = localStorage.getItem('theme');
+
+    if (currentTheme === 'invert') {
+        document.documentElement.classList.add('invert-colors');
+    } 
+    
+    else {
+        document.documentElement.classList.remove('invert-colors');
+    }
+}
+
+checkTheme()
