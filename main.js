@@ -366,3 +366,32 @@ function sortTasksByDeadline() {
     
     location.reload();
 }
+
+function menü() {
+    // Auswahl der Buttons durch ihre onclick-Attribute
+    const sortButtonsa = document.querySelector("[onclick='sortTasksa()']");
+    const sortButtonsb = document.querySelector("[onclick='sortTasksb()']");
+    const sortButtonsByDeadline = document.querySelector("[onclick='sortTasksByDeadline()']");
+    const switchtheme = document.querySelector("[onclick='toggleInvertColors()']")
+    
+    // Überprüfung, ob die Buttons sichtbar sind (display != 'none')
+    if (sortButtonsa.style.display !== 'none' && sortButtonsb.style.display !== 'none' && sortButtonsByDeadline.style.display !== 'none') {
+        // Buttons ausblenden
+        sortButtonsa.style.display = 'none';
+        sortButtonsb.style.display = 'none';
+        sortButtonsByDeadline.style.display = 'none';
+        switchtheme.style.display = 'none';
+    }
+
+    else {
+        // Buttons einblenden
+        sortButtonsa.style.display = 'inline-block'; // oder 'block', abhängig vom gewünschten Layout
+        sortButtonsb.style.display = 'inline-block';
+        sortButtonsByDeadline.style.display = 'inline-block';
+        switchtheme.style.display = 'inline-block';
+    }
+}
+
+function toggleInvertColors() {
+    document.body.classList.toggle('invert-colors');
+}

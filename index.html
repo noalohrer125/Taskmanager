@@ -8,52 +8,59 @@
     <script src="main.js" defer></script>
 </head>
 <body>
-  <div id="all">
-    <table id="todo_table">
-      <button onclick="sortTasksa()" style="width: auto;">Sort tasks alphabetically (asccending)</button>
-      <br>
-      <button onclick="sortTasksb()" style="width: auto;">Sort tasks alphabetically (descending)</button>
-      <br>
-      <button onclick="sortTasksByDeadline()" style="width: auto;">Sort by deadline</button>
-      <tr>
-          <th>
-              ToDoo's
-          </th>
-          <th>
-              In Progress
-          </th>
-          <th>
-              Done
-          </th>
-      </tr>
-    </table>
+  <button id="Menü" onclick="menü()">
+    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="10px" width="50" height="50" viewBox="0 0 50 50">
+      <path d="M 0 7.5 L 0 12.5 L 50 12.5 L 50 7.5 Z M 0 22.5 L 0 27.5 L 50 27.5 L 50 22.5 Z M 0 37.5 L 0 42.5 L 50 42.5 L 50 37.5 Z"></path>
+    </svg>
+  </button>
+  <div class="sortbuttondiv">
+    <button onclick="sortTasksa()" class="sortbutton">Sort tasks alphabetically (asccending)</button>
     <br>
-    <button onclick="add_task()" id="add_task">Add Task</button>
-
-    <div id="popupform">
-      <div class="single_Task" style="width: 300px; border: solid black 1px; padding: 20px;">
-          <h1 style="text-decoration: underline; text-align: center;">
-            Taskname:
-          </h1>
-          <input type="text" id="input_taskname">
-          <h2>
-            Description:
-          </h2>
-          <div>
-              <textarea type="text" id="input_description"></textarea>
-          </div>
-          <br>
-          <h3 class="inline-block">
-            Deadline:
-          </h3>
-          <input type="date" id="input_deadline" class="inline-block">
-          <br>
-          <div style="text-align: center;">
-            <button onclick="submit(id)">Submit</button>
-            <button onclick="closeform(this)">Cancel</button>
-          </div>
+    <button onclick="sortTasksb()" class="sortbutton">Sort tasks alphabetically (descending)</button>
+    <br>
+    <button onclick="sortTasksByDeadline()" class="sortbutton">Sort by deadline</button>
+    <br>
+    <br>
+    <button onclick="toggleInvertColors()" class="sortbutton">switch Theme</button>
+  </div>
+  <table id="todo_table">
+    <tr>
+        <th>
+            ToDoo's
+        </th>
+        <th>
+            In Progress
+        </th>
+        <th>
+            Done
+        </th>
+    </tr>
+  </table>
+  <br>
+  <button onclick="add_task()" id="add_task">Add Task</button>
+  <div id="popupform">
+    <div class="single_Task" style="width: 300px; border: solid black 1px; padding: 20px;">
+        <h1 style="text-decoration: underline; text-align: center;">
+          Taskname:
+        </h1>
+        <input type="text" id="input_taskname">
+        <h2>
+          Description:
+        </h2>
+        <div>
+            <textarea type="text" id="input_description"></textarea>
         </div>
-    </div>
+        <br>
+        <h3 class="inline-block">
+          Deadline:
+        </h3>
+        <input type="date" id="input_deadline" class="inline-block">
+        <br>
+        <div style="text-align: center;">
+          <button onclick="submit(id)">Submit</button>
+          <button onclick="closeform(this)">Cancel</button>
+        </div>
+      </div>
   </div>
 </body>
 </html>
