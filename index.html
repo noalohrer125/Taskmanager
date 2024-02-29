@@ -6,6 +6,7 @@
     <title>Taskmanager</title>
     <link rel="stylesheet" href="style.css">
     <script src="main.js" defer></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
 </head>
 <body>
   <button id="Menü" onclick="menü()">
@@ -13,15 +14,15 @@
       <path d="M 0 7.5 L 0 12.5 L 50 12.5 L 50 7.5 Z M 0 22.5 L 0 27.5 L 50 27.5 L 50 22.5 Z M 0 37.5 L 0 42.5 L 50 42.5 L 50 37.5 Z"></path>
     </svg>
   </button>
-  <div class="sortbuttondiv" id="sortbuttondiv">
-    <button onclick="sortTasksa()" class="sortbutton">Sort tasks alphabetically (asccending)</button>
+  <div id="sortbuttondiv">
+    <button onclick="sortTasksa()" class="sortbutton">Sort <i class="fas fa-sort-alpha-up"></i></button>
     <br>
-    <button onclick="sortTasksb()" class="sortbutton">Sort tasks alphabetically (descending)</button>
+    <button onclick="sortTasksb()" class="sortbutton">Sort <i class="fas fa-sort-alpha-down-alt"></i></button>
     <br>
     <button onclick="sortTasksByDeadline()" class="sortbutton">Sort by deadline</button>
     <br>
     <br>
-    <button onclick="toggleInvertColors()" class="sortbutton">switch Theme</button>
+    <button onclick="toggleInvertColors()" class="sortbutton">switch Theme <i class="fas fa-toggle-on"></i></button>
   </div>
   <table id="todo_table">
     <tr>
@@ -37,7 +38,7 @@
     </tr>
   </table>
   <br>
-  <button onclick="add_task()" id="add_task">Add Task</button>
+  <button onclick="add_task()" id="add_task">Add Task <i class="fas fa-plus-circle"></i></button>
   <div id="popupform">
     <div class="single_Task" style="width: 300px; border: solid black 1px; padding: 20px;">
         <h1 style="text-decoration: underline; text-align: center;">
@@ -57,8 +58,8 @@
         <input type="date" id="input_deadline" class="inline-block">
         <br>
         <div style="text-align: center;">
-          <button onclick="submit(id)">Submit</button>
-          <button onclick="closeform(this)">Cancel</button>
+          <button onclick="submit(id)"><i class="far fa-save"></i></button>
+          <button onclick="closeform(this)"><i class="fas fa-window-close"></i></button>
         </div>
       </div>
   </div>

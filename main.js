@@ -236,9 +236,9 @@ function render_tasks() {
                         ${Deadline}
                     </p>
                     <br>
-                    <button onclick="start(this)">Start</button>
-                    <button onclick="edit(this)">Edit</button>
-                    <button onclick="remove(this)">Remove</button>
+                    <button onclick="start(this)"><i class="fas fa-play"></i></button>
+                    <button onclick="edit(this)"><i class="far fa-edit"></i></button>
+                    <button onclick="remove(this)"><i class="fas fa-trash"></i></button>
                 </div>
                 <br>
                 `
@@ -270,9 +270,9 @@ function render_tasks() {
                         ${Deadline}
                     </p>
                     <br>
-                    <button onclick="done(this)">Done</button>
-                    <button onclick="edit(this)">Edit</button>
-                    <button onclick="remove(this)">Remove</button>
+                    <button onclick="done(this)"><i class="fas fa-check"></i></button>
+                    <button onclick="edit(this)"><i class="far fa-edit"></i></button>
+                    <button onclick="remove(this)"><i class="fas fa-trash"></i></button>
                 </div>
                 <br>
                 `
@@ -304,9 +304,9 @@ function render_tasks() {
                         ${Deadline}
                     </p>
                     <br>
-                    <button onclick="todo(this)">Start</button>
-                    <button onclick="edit(this)">Edit</button>
-                    <button onclick="remove(this)">Remove</button>
+                    <button onclick="todo(this)"><i class="fas fa-fast-backward"></i></button>
+                    <button onclick="edit(this)"><i class="far fa-edit"></i></button>
+                    <button onclick="remove(this)"><i class="fas fa-trash"></i></button>
                 </div>
                 <br>
                 `
@@ -372,15 +372,15 @@ function menü() {
     const sortbuttondiv = document.getElementById('sortbuttondiv');
     
     // Überprüfung, ob die Buttons sichtbar sind (display != 'none')
-    if (sortbuttondiv.style.display !== 'none') {
+    if (sortbuttondiv.style.display === '' || sortbuttondiv.style.display === 'none') {
+        // Buttons ausblenden
+        sortbuttondiv.style.display = 'inline-block';
+    }
+    else if (sortbuttondiv.style.display !== 'none') {
         // Buttons ausblenden
         sortbuttondiv.style.display = 'none';
     }
 
-    else {
-        // Buttons einblenden
-        sortbuttondiv.style.display = 'inline-block'; // oder 'block', abhängig vom gewünschten Layout
-    }
 }
 
 function toggleInvertColors() {

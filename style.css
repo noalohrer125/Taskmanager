@@ -48,9 +48,7 @@ th {
 }
 
 button {
-    border: solid black 1px;
-    background-color: #ffffff;
-    margin: 2px;
+    margin: 10px;
     width: auto;
     height: auto;
     font-size: 20px;
