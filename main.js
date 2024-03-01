@@ -221,14 +221,14 @@ function render_tasks() {
             
                 zelle1.innerHTML = 
                 `
-                <div style="padding: 10px 40px 10px 40px; border: solid black 10px; width: 180px;">
+                <div style="padding: 10px 40px 10px 40px; border: solid black 10px; width: 220px;">
                     <h1 style="text-decoration: underline; text-align: center; color: ${color} !important;" class="taskname">
                         ${Name}
                     </h1>
-                    <h2>
+                    <h2 style="display: inline-block;">
                         Description:
                     </h2>
-                    <button onclick="expand(this)"><i class="fas fa-caret-down"></i></button>
+                    <button onclick="expand(this)" style="display: inline-block;"><i class="fas fa-caret-down"></i></button>
                     <ul class="description" id="ul${i}">
                         ${Description.map(x => `<li style="border-bottom: solid gray 1px;">${x}</li>`).join('')}
                     </ul>
@@ -256,14 +256,14 @@ function render_tasks() {
             
                 zelle2.innerHTML = 
                 `
-                <div style="padding: 10px 40px 10px 40px; border: solid black 10px; width: 180px;">
+                <div style="padding: 10px 40px 10px 40px; border: solid black 10px; width: 220px;">
                     <h1 style="text-decoration: underline; text-align: center; color: ${color} !important;" class="taskname">
                         ${Name}
                     </h1>
-                    <h2>
+                    <h2 style="display: inline-block;">
                         Description:
                     </h2>
-                    <button onclick="expand(this)"><i class="fas fa-caret-down"></i></button>
+                    <button onclick="expand(this)" style="display: inline-block;"><i class="fas fa-caret-down"></i></button>
                     <ul class="description" id="ul${i}">
                         ${Description.map(x => `<li style="border-bottom: solid gray 1px;">${x}</li>`).join('')}
                     </ul>
@@ -291,14 +291,16 @@ function render_tasks() {
             
                 zelle3.innerHTML = 
                 `
-                <div style="padding: 10px 40px 10px 40px; border: solid black 10px; width: 180px;">
+                <div style="padding: 10px 40px 10px 40px; border: solid black 10px; width: 220px;">
                     <h1 style="text-decoration: underline; text-align: center; color: ${color} !important;" class="taskname">
                         ${Name}
                     </h1>
-                    <h2>
+                    <h2 style="display: inline-block;">
                         Description:
                     </h2>
-                    <button onclick="expand(this)"><i class="fas fa-caret-down"></i></button>
+                    <button onclick="expand(this)" style="display: inline-block;">
+                        <i class="fas fa-caret-down"></i>
+                    </button>
                     <ul class="description" id="ul${i}">
                         ${Description.map(x => `<li style="border-bottom: solid gray 1px;">${x}</li>`).join('')}
                     </ul>
@@ -443,7 +445,9 @@ function expand(task) {
     // Prüfe, ob das Element sichtbar ist, und ändere seine Anzeige-Eigenschaft
     if (description.style.display === 'none' || description.style.display === '') {
         description.style.display = 'block'; // Oder leer lassen, um die Standardeinstellung zu verwenden
-    } else {
+    } 
+    
+    else if (description.style.display !== 'none') {
         description.style.display = 'none';
     }
 }

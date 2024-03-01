@@ -129,3 +129,7 @@ button:after {
         filter: invert(1);
     }
 }
+
+.description {
+    display: none;
+}
