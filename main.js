@@ -53,6 +53,7 @@ function submit() {
     edit_cell_id = null
 
     let taskname = document.getElementById('input_taskname').value
+    let taskname_color = document.getElementById('tasknamecolor').value
     let description = document.getElementById('input_description').value
     let deadline = document.getElementById('input_deadline').value
 
@@ -62,6 +63,7 @@ function submit() {
 
     let newtask = {
         Taskname: taskname,
+        Color: taskname_color,
         Description: description,
         Deadline: deadline,
         Status: edit_cell_status
@@ -204,6 +206,7 @@ function render_tasks() {
     for (i in stored_tasks) {
         
         let Name = stored_tasks[i].Taskname
+        let color = stored_tasks[i].Color
         let Description = stored_tasks[i].Description.split('\n')
         let Deadline = stored_tasks[i].Deadline
         let Status = stored_tasks[i].Status
@@ -219,14 +222,15 @@ function render_tasks() {
                 zelle1.innerHTML = 
                 `
                 <div style="padding: 10px 40px 10px 40px; border: solid black 10px; width: 180px;">
-                    <h1 style="text-decoration: underline; text-align: center;">
+                    <h1 style="text-decoration: underline; text-align: center; color: ${color} !important;" class="taskname">
                         ${Name}
                     </h1>
                     <h2>
                         Description:
                     </h2>
-                    <ul>
-                    ${Description.map(x => `<li style="border-bottom: solid gray 1px;">${x}</li>`).join('')}
+                    <button onclick="expand(this)"><i class="fas fa-caret-down"></i></button>
+                    <ul class="description" id="ul${i}">
+                        ${Description.map(x => `<li style="border-bottom: solid gray 1px;">${x}</li>`).join('')}
                     </ul>
                     <br>
                     <h3 class="inline-block">
@@ -253,14 +257,15 @@ function render_tasks() {
                 zelle2.innerHTML = 
                 `
                 <div style="padding: 10px 40px 10px 40px; border: solid black 10px; width: 180px;">
-                    <h1 style="text-decoration: underline; text-align: center;">
+                    <h1 style="text-decoration: underline; text-align: center; color: ${color} !important;" class="taskname">
                         ${Name}
                     </h1>
                     <h2>
                         Description:
                     </h2>
-                    <ul>
-                    ${Description.map(x => `<li style="border-bottom: solid gray 1px;">${x}</li>`).join('')}
+                    <button onclick="expand(this)"><i class="fas fa-caret-down"></i></button>
+                    <ul class="description" id="ul${i}">
+                        ${Description.map(x => `<li style="border-bottom: solid gray 1px;">${x}</li>`).join('')}
                     </ul>
                     <br>
                     <h3 class="inline-block">
@@ -287,13 +292,14 @@ function render_tasks() {
                 zelle3.innerHTML = 
                 `
                 <div style="padding: 10px 40px 10px 40px; border: solid black 10px; width: 180px;">
-                    <h1 style="text-decoration: underline; text-align: center;">
+                    <h1 style="text-decoration: underline; text-align: center; color: ${color} !important;" class="taskname">
                         ${Name}
                     </h1>
                     <h2>
                         Description:
                     </h2>
-                    <ul>
+                    <button onclick="expand(this)"><i class="fas fa-caret-down"></i></button>
+                    <ul class="description" id="ul${i}">
                         ${Description.map(x => `<li style="border-bottom: solid gray 1px;">${x}</li>`).join('')}
                     </ul>
                     <br>
@@ -312,6 +318,20 @@ function render_tasks() {
                 `
 
                 break;
+        }
+    }
+
+    const currentTheme = localStorage.getItem('theme');
+
+    let h1Elements = document.getElementsByClassName('taskname');
+
+    for (let i = 0; i < h1Elements.length; i++) {
+        if (currentTheme === 'invert') {
+            h1Elements[i].style.backgroundColor = 'black';
+        } 
+        
+        else {
+            h1Elements[i].style.backgroundColor = 'white';
         }
     }
 }
@@ -395,6 +415,8 @@ function toggleInvertColors() {
     }
 
     checkTheme(); // Rufen Sie checkTheme auf, um die Änderungen sofort anzuwenden
+    
+    location.reload()
 }
 
 function checkTheme() {
@@ -410,3 +432,18 @@ function checkTheme() {
 }
 
 checkTheme()
+
+function expand(task) {
+    // Navigiere zum übergeordneten Container des geklickten Buttons
+    let parentContainer = task.closest('div');
+
+    // Finde das <ul> Element mit der Klasse 'description' innerhalb dieses Containers
+    let description = parentContainer.querySelector('.description');
+
+    // Prüfe, ob das Element sichtbar ist, und ändere seine Anzeige-Eigenschaft
+    if (description.style.display === 'none' || description.style.display === '') {
+        description.style.display = 'block'; // Oder leer lassen, um die Standardeinstellung zu verwenden
+    } else {
+        description.style.display = 'none';
+    }
+}

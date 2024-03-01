@@ -123,4 +123,9 @@ button:after {
 
 .invert-colors {
     filter: invert(100%);
+
+    
+    img, video, h1 {
+        filter: invert(1);
+    }
 }
