@@ -125,7 +125,7 @@ button:after {
     filter: invert(100%);
 
     
-    img, video, h1 {
+    img, video, h1, #popupform {
         filter: invert(1);
     }
 }

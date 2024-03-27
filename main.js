@@ -56,6 +56,7 @@ function submit() {
     let taskname_color = document.getElementById('tasknamecolor').value
     let description = document.getElementById('input_description').value
     let deadline = document.getElementById('input_deadline').value
+    let bgImgUrl = document.getElementById('imginput').value; // Liest die URL aus dem Eingabefeld
 
     if (!edit_cell_status) {
         edit_cell_status = "ToDoo's"
@@ -66,7 +67,8 @@ function submit() {
         Color: taskname_color,
         Description: description,
         Deadline: deadline,
-        Status: edit_cell_status
+        Status: edit_cell_status,
+        BgImgUrl: bgImgUrl // Fügt die URL des Hintergrundbilds zum Task-Objekt hinzu
     }
 
     if (!Tasks) {
@@ -83,28 +85,35 @@ function submit() {
 }
 
 function edit(id) {
-    overlay()
+    overlay();
     document.getElementById('popupform').style.display = "block";
 
-    let parentCell = id.closest('td')
-    let parentCell_id = parentCell.id.split('_')[1]
+    let parentCell = id.closest('td');
+    let parentCell_id = parentCell.id.split('_')[1];
 
-    edit_cell_id = parentCell_id
+    edit_cell_id = parentCell_id;
 
-    Tasks = JSON.parse(localStorage.getItem('Tasks')) || []
+    Tasks = JSON.parse(localStorage.getItem('Tasks')) || [];
     let task = Tasks[parentCell_id];
 
-    edit_cell_status = task.Status
+    edit_cell_status = task.Status;
 
     // Lade die Task-Daten in dein Formular
     document.getElementById('input_taskname').value = task.Taskname;
     document.getElementById('input_description').value = task.Description;
     document.getElementById('input_deadline').value = task.Deadline;
 
-    localStorage.setItem('Tasks', JSON.stringify(Tasks))
+    // Setze die Farbe des Tasknamens
+    document.getElementById('tasknamecolor').value = task.Color || '#000000'; // Standardfarbe ist Schwarz, falls keine Farbe definiert ist
 
-    render_tasks()
+    // Setze das Hintergrundbild URL-Eingabefeld, falls vorhanden
+    document.getElementById('imginput').value = task.BgImgUrl || ''; 
+
+    localStorage.setItem('Tasks', JSON.stringify(Tasks));
+
+    render_tasks();
 }
+
 
 function start(id) {
     let parentCell = id.closest('td')
@@ -210,6 +219,8 @@ function render_tasks() {
         let Description = stored_tasks[i].Description.split('\n')
         let Deadline = stored_tasks[i].Deadline
         let Status = stored_tasks[i].Status
+        let BgImgUrl = stored_tasks[i].BgImgUrl; // Extrahiere die BgImgUrl des aktuellen Tasks
+
 
         
 
@@ -246,6 +257,12 @@ function render_tasks() {
                 </div>
                 <br>
                 `
+
+                if (BgImgUrl) { // Überprüft, ob eine BgImgUrl vorhanden ist
+                    let targetDiv = document.getElementById(`Zelle_${i}`).querySelector('div'); // Erhalte den zuletzt eingestellten div für den aktuellen Task
+                    targetDiv.style.backgroundImage = `url('${BgImgUrl}')`; // Setze das Hintergrundbild
+                    targetDiv.style.backgroundSize = 'cover'; // Optional: Deckt den gesamten Bereich des Divs ab
+                }
                 
                 break;
 
@@ -281,6 +298,12 @@ function render_tasks() {
                 </div>
                 <br>
                 `
+
+                if (BgImgUrl) { // Überprüft, ob eine BgImgUrl vorhanden ist
+                    let targetDiv = document.getElementById(`Zelle_${i}`).querySelector('div'); // Erhalte den zuletzt eingestellten div für den aktuellen Task
+                    targetDiv.style.backgroundImage = `url('${BgImgUrl}')`; // Setze das Hintergrundbild
+                    targetDiv.style.backgroundSize = 'cover'; // Optional: Deckt den gesamten Bereich des Divs ab
+                }
 
                 break;
 
@@ -318,6 +341,12 @@ function render_tasks() {
                 </div>
                 <br>
                 `
+
+                if (BgImgUrl) { // Überprüft, ob eine BgImgUrl vorhanden ist
+                    let targetDiv = document.getElementById(`Zelle_${i}`).querySelector('div'); // Erhalte den zuletzt eingestellten div für den aktuellen Task
+                    targetDiv.style.backgroundImage = `url('${BgImgUrl}')`; // Setze das Hintergrundbild
+                    targetDiv.style.backgroundSize = 'cover'; // Optional: Deckt den gesamten Bereich des Divs ab
+                }
 
                 break;
         }
